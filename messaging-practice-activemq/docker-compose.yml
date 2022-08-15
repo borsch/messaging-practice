@@ -1,0 +1,15 @@
+version: '1.0'
+services:
+  activemq:
+    image: rmohr/activemq:5.15.9
+    ports:
+    - '61616:61616'
+    - '8161:8161'
+
+  amq-producer:
+    image: amq-producer:latest
+    build: amq-producer/
+
+  amq-consumer:
+    image: amq-consumer:latest
+    build: amq-consumer/
