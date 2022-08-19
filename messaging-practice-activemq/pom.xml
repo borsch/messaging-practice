@@ -11,6 +11,7 @@
 	<modules>
 		<module>amq-producer</module>
 		<module>amq-consumer</module>
+		<module>amq-consumer-2</module>
 	</modules>
 
 </project>

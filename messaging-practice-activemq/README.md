@@ -28,6 +28,10 @@ Run `docker-compose up --build` to start all services with-in docker containers.
 1. Start all services as describer in Run step
 2. Push message using following command `curl http://localhost:8082/send-and-receive?message=some-test-message`, observe service logs & check response to http request
 
+#### Virtual topics
 
-
-
+1. Start all services as describer in Run step
+2. Push message using following command `http://localhost:8082/virtual-topic?message=some-test-message`, observe service logs.
+   Note that two different services (ie `amq-consumer` & `amq-consumer-2`) receive them message
+3. Restart docker containers using command `docker-compose up --build --scale amq-consumer-2=3` which will start three instances of `amq-consumer-2` service
+4. Repeat start 2 few times and observe logs. You should see that different instances of `amq-consumer-2` receives message, but never two or more receive same message

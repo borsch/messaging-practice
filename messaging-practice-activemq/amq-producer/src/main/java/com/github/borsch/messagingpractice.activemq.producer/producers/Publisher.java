@@ -31,6 +31,8 @@ public class Publisher implements ApplicationRunner {
     private final String topic;
     @Value("${queue.with-reply}")
     private final String requestReplyQueue;
+    @Value("${virtual.topic}")
+    private final String virtualTopic;
 
     @Override
     public void run(final ApplicationArguments args) throws InterruptedException {
@@ -51,5 +53,9 @@ public class Publisher implements ApplicationRunner {
         Message message = queueTemplate.sendAndReceive(requestReplyQueue, session -> session.createTextMessage(requestMessage));
         log.info("Sent request message {} and received response {}", requestMessage, message);
         return ((TextMessage) message).getText();
+    }
+
+    public void publishToVirtualTopic(String message) {
+        topicTemplate.convertAndSend(virtualTopic, message);
     }
 }

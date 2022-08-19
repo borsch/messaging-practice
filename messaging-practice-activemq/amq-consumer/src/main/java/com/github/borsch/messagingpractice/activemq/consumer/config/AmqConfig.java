@@ -17,6 +17,7 @@ public class AmqConfig {
     public static final String TOPIC_JMS_LISTENER_DURABLE = "AmqConfig.topicJmsListenerDurable";
     public static final String TOPIC_JMS_LISTENER_NON_DURABLE = "AmqConfig.topicJmsListenerNonDurable";
     public static final String QUEUE_JMS_LISTENER = "AmqConfig.queueJmsListener";
+    public static final String VIRTUAL_TOPIC_JMS_LISTENER = "AmqConfig.virtualTopicJmsListener";
 
     @Value("${spring.activemq.broker-url}")
     private final String brokerUrl;
@@ -62,6 +63,15 @@ public class AmqConfig {
         jmsListener.setPubSubDomain(false);
         jmsListener.setConnectionFactory(connectionFactory);
         jmsListener.setClientId("queueListener");
+
+        return jmsListener;
+    }
+
+    @Bean(VIRTUAL_TOPIC_JMS_LISTENER)
+    DefaultJmsListenerContainerFactory virtualTopicJmsListener(final ConnectionFactory connectionFactory) {
+        final DefaultJmsListenerContainerFactory jmsListener = new DefaultJmsListenerContainerFactory();
+        jmsListener.setPubSubDomain(false);
+        jmsListener.setConnectionFactory(connectionFactory);
 
         return jmsListener;
     }

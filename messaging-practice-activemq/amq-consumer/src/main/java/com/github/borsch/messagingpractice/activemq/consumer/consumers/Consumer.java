@@ -33,4 +33,9 @@ public class Consumer {
         return "Message - " + message + " has been processed";
     }
 
+    @JmsListener(destination = "Consumer.firstConsumer.${virtual.topic}", containerFactory = AmqConfig.VIRTUAL_TOPIC_JMS_LISTENER)
+    void virtualTopicReceiver1(String message) {
+        log.info("Virtual topic. First consumer received : {}", message);
+    }
+
 }

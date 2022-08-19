@@ -26,4 +26,9 @@ public class TestController {
         return ResponseEntity.ok(publisher.requestReplyQueue(message));
     }
 
+    @GetMapping("/virtual-topic")
+    public ResponseEntity<String> publishMessageToVirtualTopic(@RequestParam("message") String message) {
+        publisher.publishToVirtualTopic(message);
+        return ResponseEntity.ok("published");
+    }
 }

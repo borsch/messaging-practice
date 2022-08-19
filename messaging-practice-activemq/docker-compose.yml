@@ -15,3 +15,7 @@ services:
   amq-consumer:
     image: amq-consumer:latest
     build: amq-consumer/
+
+  amq-consumer-2:
+    image: amq-consumer-2:latest
+    build: amq-consumer-2/
