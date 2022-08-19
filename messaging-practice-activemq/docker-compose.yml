@@ -9,6 +9,8 @@ services:
   amq-producer:
     image: amq-producer:latest
     build: amq-producer/
+    ports:
+    - '8082:8082'
 
   amq-consumer:
     image: amq-consumer:latest
