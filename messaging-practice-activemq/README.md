@@ -23,3 +23,11 @@ Run `docker-compose up --build` to start all services with-in docker containers.
 6. Observe that messages from step 4 were picked only by durable subscriber
 
 
+#### Request & Reply
+
+1. Start all services as describer in Run step
+2. Push message using following command `curl http://localhost:8082/send-and-receive?message=some-test-message`, observe service logs & check response to http request
+
+
+
+

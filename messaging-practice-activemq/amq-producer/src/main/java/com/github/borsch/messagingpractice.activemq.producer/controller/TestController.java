@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.borsch.messagingpractice.activemq.producer.producers.TopicPublisher;
+import com.github.borsch.messagingpractice.activemq.producer.producers.Publisher;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,14 +13,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TestController {
 
-    private final TopicPublisher topicPublisher;
+    private final Publisher publisher;
 
     @GetMapping("/topic")
-    public ResponseEntity<String> publishMessageToTopic(
-        @RequestParam("message") String message
-    ) {
-        topicPublisher.publish(message);
+    public ResponseEntity<String> publishMessageToTopic(@RequestParam("message") String message) {
+        publisher.publish(message);
         return ResponseEntity.ok("published");
+    }
+
+    @GetMapping("/send-and-receive")
+    public ResponseEntity<String> requestAndReceive(@RequestParam("message") String message) {
+        return ResponseEntity.ok(publisher.requestReplyQueue(message));
     }
 
 }

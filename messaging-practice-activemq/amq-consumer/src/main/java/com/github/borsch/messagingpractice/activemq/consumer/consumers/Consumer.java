@@ -21,4 +21,16 @@ public class Consumer {
         log.info("Non-durable subscriber: received message {}", message);
     }
 
+    @JmsListener(destination = "${queue.with-reply}", containerFactory = AmqConfig.QUEUE_JMS_LISTENER)
+    String receiveAndReply(String message) {
+        log.info("Receive and reply request: {}", message);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return "Message - " + message + " has been processed";
+    }
+
 }
