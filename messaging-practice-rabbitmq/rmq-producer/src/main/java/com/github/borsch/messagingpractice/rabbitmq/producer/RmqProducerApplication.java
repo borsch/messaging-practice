@@ -27,10 +27,12 @@ public class RmqProducerApplication {
                     "totalInvoiceSum", 10 * i
                 );
 
-                amqpTemplate.convertAndSend("CustomerExchange", "customer.receipt", objectMapper.writeValueAsString(message));
+                amqpTemplate.convertAndSend("CustomerExchangeTask1", "customer.receipt", objectMapper.writeValueAsString(message));
+                amqpTemplate.convertAndSend("CustomerExchangeTask2", "customer.receipt", objectMapper.writeValueAsString(message));
             }
 
-            amqpTemplate.convertAndSend("CustomerExchange", "customer.receipt", "malformed message");
+            amqpTemplate.convertAndSend("CustomerExchangeTask1", "customer.receipt", "malformed message");
+            amqpTemplate.convertAndSend("CustomerExchangeTask2", "customer.receipt", "malformed message");
         };
     }
 }
