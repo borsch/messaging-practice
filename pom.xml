@@ -11,6 +11,7 @@
         <module>messaging-practice-activemq</module>
         <module>messaging-practice-rabbitmq</module>
         <module>messaging-practice-kafka</module>
+        <module>messaging-practice-kafka-streams</module>
     </modules>
 
 
